@@ -1,0 +1,234 @@
+.body {
+    background-color: #111111;
+    margin: 0;
+    overflow-x: hidden;
+    min-height: 1000px;
+}
+
+.checkbox {
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.white-border {
+    border-color: white !important;
+}
+
+.icon {
+    margin-right: 10px;
+    padding: 0px;
+}
+
+.transparent {
+    background-color: transparent !important;
+    border-color: #2a2a2a;
+}
+
+.add-btn {
+    border-radius: 0 !important;
+}
+
+.list-items {
+    padding: 7px !important;
+}
+
+.white-text {
+    color: #fff;
+    padding-left: 30px;
+}
+
+.card {
+    background-color: #111111 !important;
+    padding: 30px !important;
+    border-color: #fff !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+}
+
+.page-link {
+    background-color: #111111 !important;
+    border-color: #fff !important;
+    color: #fff !important;
+}
+
+.link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #00bfff;
+    text-decoration: underline;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.767);
+    position: relative;
+    z-index: 1;
+}
+
+.navbar > a {
+    color:white;
+    text-decoration: none;
+}
+
+.bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200vh;
+    background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+    background-repeat: repeat;
+    animation: bg-animation .2s infinite;
+    opacity: .9;
+    visibility: visible;
+}
+
+@keyframes bg-animation {
+    0% { transform: translate(0,0) }
+    10% { transform: translate(-5%,-5%) }
+    20% { transform: translate(-10%,5%) }
+    30% { transform: translate(5%,-10%) }
+    40% { transform: translate(-5%,15%) }
+    50% { transform: translate(-10%,5%) }
+    60% { transform: translate(15%,0) }
+    70% { transform: translate(0,10%) }
+    80% { transform: translate(-15%,0) }
+    90% { transform: translate(10%,5%) }
+    100% { transform: translate(5%,0) }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
+}
+
+.fade-in.delay-1 {
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .nav-link:focus,
+.navbar .nav-link:active {
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover {
+    color: #00bfff !important;
+}
+
+.navbar .dropdown-toggle {
+    color: #fff !important;
+}
+
+.navbar .dropdown-menu {
+    background-color: #222 !important;
+    border: none;
+}
+
+.navbar .dropdown-menu .dropdown-item {
+    color: #fff !important;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+    background-color: #222 !important;
+    color: #00bfff !important;
+}
+
+.navbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.5rem;
+}
+
+.navbar-toggler {
+    font-size: 1.2rem;
+}
+
+.dropdown-menu, .dropdown-item {
+    background-color: gray;
+}
+
+.form-group {
+    display: block;
+    width: 100%; 
+    margin-bottom: 1rem;
+}
+
+.footer-dark {
+    background-color: #0f0f0fef;
+    color: #ffffff;
+}
+
+.footer-bottom {
+    background-color: #ffffff1c;
+    color: #ccc;
+}
+
+.footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #00bfff;
+    text-decoration: underline;
+}
+
+.dark-form {
+    position: relative;
+    z-index: 1;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+}
+
+.dark-input {
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.dark-input::placeholder {
+    color: #aaa;
+}
+
+.dark-input:focus {
+    background-color: #2a2a2a;
+    color: #fff;
+    border-color: #00bfff;
+    box-shadow: none;
+}

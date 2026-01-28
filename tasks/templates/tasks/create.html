@@ -1,0 +1,45 @@
+{% extends "tasks/layout.html" %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock title %}
+
+{% block body %}
+    <div class="white-text">
+        <p>
+            <h2>Create A New List</h2>
+        </p>
+    </div>
+    <hr class="bg-white">
+    <div class="d-flex justify-content-center align-items-center vh-100 mt-n5">
+        <div class="text-center w-100">
+            <form action="{% url 'create_list' %}" method="post" class="mx-auto p-4 border rounded dark-form" style="max-width: 400px; width: 100%;">
+                {% csrf_token %}
+                <div class="form-group mb-3 text-start">
+                    <label for="Name" class="text-light">Name:</label>
+                    <input type="text" class="form-control dark-input" id="Name" name="name" required>
+                </div>
+                <div class="form-group mb-3 text-start">
+                    <label for="Description" class="text-light">Description:</label>
+                    <textarea class="form-control dark-input" id="Description" name="description" required></textarea>
+                </div>
+                <div class="form-group mb-3 d-flex justify-content-between align-items-center">
+                    <label for="public" class="text-light mb-0">Make this list public:</label>
+                    <div class="ms-auto">
+                        <input type="checkbox" class="dark-input" id="public" name="public">
+                    </div>
+                </div>
+                <div class="form-group mb-3 d-flex justify-content-between align-items-center">
+                    <label for="everyday_uncheck" class="text-light mb-0">Reset tasks every day:</label>
+                    <div class="ms-auto">
+                        <input type="checkbox" class="dark-input" id="everyday_uncheck" name="everyday_uncheck">
+                    </div>
+                </div>
+                {% if message %}
+                    <small class="text-danger">{{ message }}</small>
+                {% endif %}
+                <button type="submit" class="btn btn-primary w-100">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock body %}

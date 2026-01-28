@@ -1,0 +1,24 @@
+{% extends "tasks/layout.html" %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock title %}
+
+{% block body %}
+    <div class="bg"></div>
+    <div class=" vh-100 d-flex justify-content-center align-items-center text-center text-light">
+        <div class="welcome-content">
+            <h1 class="display-3 fw-bold fade-in">Welcome to Listly</h1>
+            <p class="lead fade-in delay-1">
+                Optimize your life, one list at a time.
+                <br>
+                <small class="text-muted">
+                    <a href="{% url 'login' %}">Log In</a>
+                    or 
+                    <a href="{% url 'register' %}">Register</a>
+                    Now
+                </small>
+            </p>
+        </div>
+    </div>
+{% endblock body %}

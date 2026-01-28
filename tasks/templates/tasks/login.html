@@ -1,0 +1,30 @@
+{% extends "tasks/layout.html" %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock title %}
+
+{% block body %}
+    <div class="bg"></div>
+    <div class="d-flex justify-content-center align-items-center vh-100 mt-n4">
+        <div class="text-center w-100">
+            <h4 class="mb-2 text-light" style="padding: 5px">Login In Now And Start Optimizing Your Life.</h4>
+            <form action="{% url 'login' %}" method="post" class="mx-auto p-4 border rounded dark-form" style="max-width: 400px; width: 100%;">
+                {% csrf_token %}
+                <div class="form-group mb-3 text-start">
+                    <label for="Username" class="text-light">Username:</label>
+                    <input type="text" class="form-control dark-input" id="Username" name="username" required>
+                </div>
+                <div class="form-group mb-3 text-start">
+                    <label for="Password" class="text-light">Password:</label>
+                    <input type="password" class="form-control dark-input" id="Password" name="password" required>
+                </div>
+                {% if message %}
+                    <small class="text-danger">{{ message }}</small>
+                {% endif %}
+                <button type="submit" class="btn btn-primary w-100">Log In</button>
+            </form>
+            <small class="text-muted">No Account Yet? <a href="{% url 'register' %}" style="position: relative; z-index: 1;">Create One</a></small>
+        </div>
+    </div>
+{% endblock body %} 

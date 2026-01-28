@@ -1,0 +1,103 @@
+{% extends "tasks/layout.html" %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock title %}
+
+{% block body %}
+    <div id="task-wrapper" data-list-id="{{ list.id }}">
+        <div class="white-text">
+            <p>
+                <h2>{{ list.name }}</h2>
+                {% if user.is_authenticated and user != list.user %}
+                    <form id="copy-list-form" data-list-id="{{ list.id }}" onsubmit="event.preventDefault(); copyList({{ list.id }});">
+                        {% csrf_token %}
+                        <button type="submit" id="copy-list-btn" class="btn btn-secondary">Copy List</button><br>
+                    </form>
+                {% endif %}
+                <small class="text-muted">
+                    {{ list.description }}
+                </small>
+            </p>
+        </div>
+        <hr class="bg-white">
+
+        {% if user.is_authenticated and user == list.user %}
+            <div class="table-responsive my-4">
+                <table class="table align-middle mx-auto" style="max-width: 1000px;">
+                    <thead class="thead-dark white-border bg-dark">
+                        <tr>
+                            <th scope="col" class="text-center transparent" style="width: 5%;">✓</th>
+                            <th scope="col" class="transparent" style="width: 60%;">Task</th>
+                            <th scope="col" class="transparent" style="width: 30%;">Added</th>
+                            <th scope="col" class="text-center transparent" style="width: 5;">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in items %}
+                    <tr class="task-item" data-id="{{ item.id }}">
+                        <td class="checkbox text-center align-items-center">
+                        <input type="checkbox" class="form-check-input checkbox" {% if item.checked %}checked{% endif %} onchange="toggleTask({{ item.id }})">
+                        </td>
+                        <td>
+                            <span class="{% if item.checked %}line-through{% endif %} text-light">
+                                {{ item.content }}
+                            </span>
+                        </td>
+                        <td class="white-text">{{ item.list.timestamp|date:"Y-m-d" }}</td>
+                        <td class="text-center">
+                            <button class=" btn btn-sm btn-danger" onclick="deleteTask({{ item.id }})">🗑</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <form id="add-task-form" class="mt-4 d-flex justify-content-center">
+                {% csrf_token %}
+                <div class="input-group" style="max-width: 500px;">
+                    <input type="text" id="task-content"
+                        class="form-control bg-transparent text-light"
+                        placeholder="New task..." required>
+                    <button class="btn btn-secondary add-btn" type="submit">Add</button>
+                </div>
+            </form>
+            <p style="text-align: center;">
+                <small class="text-muted">
+                    {% if list.public %}Public List. {% else %}Private List. {% endif %} 
+                    {% if list.everyday_uncheck %}(Everyday uncheck feature on){% endif %}
+                </small>
+            </p>
+        {% else %}
+            <div class="table-responsive my-4">
+                <table class="table align-middle mx-auto" style="max-width: 1000px;">
+                    <thead class="thead-dark white-border bg-dark">
+                        <tr>
+                            <th scope="col" class="transparent" style="width: 70%;">Task</th>
+                            <th scope="col" class="transparent" style="width: 30%;">Added</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in items %}
+                    <tr class="task-item" data-id="{{ item.id }}">
+                        <td>
+                            <span class="text-light">
+                                {{ item.content }}
+                            </span>
+                        </td>
+                        <td class="white-text">{{ item.list.timestamp|date:"Y-m-d" }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <p style="text-align: center;">
+                <small class="text-muted">
+                    {% if list.public %}Public List. {% else %}Private List. {% endif %} 
+                    {% if list.everyday_uncheck %}(Everyday uncheck feature on){% endif %}
+                </small>
+            </p>
+        {% endif %}
+    </div>
+{% endblock body %}

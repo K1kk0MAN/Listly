@@ -1,0 +1,78 @@
+{% extends "tasks/layout.html" %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock title %}
+
+{% block body %}
+    <div class="white-text">
+        <p>
+            <h2>Welcome, {{ user.username }}</h2>
+        </p>
+    </div>
+    <hr class="bg-white">
+    {% if not list %}
+        <div class="white-text">
+            <small class="text-muted">No Lists are created yet.</small>
+            <p>
+                <small class="text-muted">Want a new one? <a class="link" href="{% url 'create_list' %}">Create List</a></small>
+            </p>
+        </div>
+    {% else %}
+        <div class="white-text">
+            <h5>Total Lists: {{ list.count }}</h5>
+            <p>
+                <small class="text-muted">Want a new one? <a class="link" href="{% url 'create_list' %}">Create List</a></small>
+            </p>
+        </div>
+        {% for list in lists %}
+            <div class="list-items">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ list.name }}</h5>
+                        <p class="card-text">{{ list.description }}</p>
+                        <a href="{% url 'task_list' list.id %}" class="btn btn-secondary">View List</a><br>
+                        <small class="text-muted">{{ list.timestamp }}</small>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if lists.has_other_pages %}
+            <nav>
+                <ul class="pagination justify-content-center p-4">
+                    {% if lists.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ lists.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">&laquo;</span>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item disabled">
+                        <span class="page-link">
+                            Page {{ lists.number }} of {{ lists.paginator.num_pages }}
+                        </span>
+                    </li>
+
+                    {% if lists.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ lists.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">&raquo;</span>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+
+    {% endif %}
+{% endblock body %}
